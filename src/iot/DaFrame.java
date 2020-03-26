@@ -38,16 +38,12 @@ public class DaFrame extends Frame {
 	DaFrame()
 	{
 		int w1,w2;
-		
 		this.setLayout(new FlowLayout());
-		
-		
-		for(int i=0;i<7;i++)
+                for(int i=0;i<7;i++)
 		{
-			bCaption[i]="On_D"+Integer.toString(i);
-			bCaption[i+7]="Off_D"+Integer.toString(i);			
+			bCaption[i]="Switch_ON"+Integer.toString(i);
+			bCaption[i+7]="Switch_OFF"+Integer.toString(i);			
 		}
-		
 		for(int i=0;i<7;i++)
 		{
 			b[i]=new Button(bCaption[i]);
@@ -59,23 +55,18 @@ public class DaFrame extends Frame {
 		{
 			b[i].setFont(myFont);
 		}
-		
 		for(int i=0;i<7;i++)
 		{
 			this.add(b[i]);
 			this.add(b[i+7]);
 		}
-		
 		bexit.setFont(myFont);
 		this.add(bexit);
-		
 		txt=new TextField();
 		txt.setColumns(15);
 		txt.setText("192.168.4.1");
 		txt.setFont(myFont);
 		this.add(txt);
-		
-		
 		txtStatus=new TextField();
 		txtStatus.setColumns(15);
 		txtStatus.setText("");
@@ -96,9 +87,7 @@ public class DaFrame extends Frame {
 		int h1=getInsets().top;
 		double hScale=1.0;
 		fHeight=(int)Math.floor(fHeight*hScale)+h1;
-		
-		
-		
+	
 		setTitle("ESP8266");
 		this.resize(fWidth,fHeight);
 		this.show(); 
@@ -148,6 +137,7 @@ public class DaFrame extends Frame {
 			
 			try {
 				soc=new Socket(txt.getText(),1987);
+                                System.out.println(txt.getText());
 				txtStatus.setText("Connected");
 			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block
