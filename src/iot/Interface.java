@@ -5,27 +5,20 @@
  */
 package iot;
 
-import java.awt.Event;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import static java.lang.System.exit;
 import java.net.NoRouteToHostException;
 //import java.net.NoRouteToHostException;
+
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.UnknownHostException; 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 
 /**
  *
@@ -43,6 +36,7 @@ public class Interface extends  javax.swing.JFrame  {
    int c6=0;
    int c7=0;
    int c8=0;
+   int cc=0;
    int conn=0;
    
    
@@ -65,7 +59,6 @@ public class Interface extends  javax.swing.JFrame  {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         sw3 = new javax.swing.JLabel();
-        sw8 = new javax.swing.JLabel();
         sw5 = new javax.swing.JLabel();
         sw6 = new javax.swing.JLabel();
         sw1 = new javax.swing.JLabel();
@@ -82,6 +75,7 @@ public class Interface extends  javax.swing.JFrame  {
         connect = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        Launch = new javax.swing.JToggleButton();
 
         jButton1.setText("jButton1");
 
@@ -103,14 +97,6 @@ public class Interface extends  javax.swing.JFrame  {
             }
         });
         jPanel1.add(sw3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
-
-        sw8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/8r.png"))); // NOI18N
-        sw8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sw8MouseClicked(evt);
-            }
-        });
-        jPanel1.add(sw8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         sw5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/5r.png"))); // NOI18N
         sw5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,6 +188,11 @@ public class Interface extends  javax.swing.JFrame  {
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_broom_90px.png"))); // NOI18N
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -271,11 +262,24 @@ public class Interface extends  javax.swing.JFrame  {
         jLabel5.setText("Version 1.0");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
+        Launch.setText("Launch");
+        Launch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LaunchMouseClicked(evt);
+            }
+        });
+        Launch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                LaunchKeyPressed(evt);
+            }
+        });
+        jPanel1.add(Launch, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 80, 70));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,42 +510,6 @@ public class Interface extends  javax.swing.JFrame  {
         
     }//GEN-LAST:event_sw7MouseClicked
 
-    private void sw8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sw8MouseClicked
-       c8++;
-       
-               
-                   if(c8%2==1){
-                       sw8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/8r.png"))); // NOI18N
-                       command=aASCII+7+7;
-                       writeCommand(command);
-                       System.out.println(command);
-                       System.out.println(command + " off ");
-                   }
-                   else{
-                       sw8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/8b.png"))); // NOI18N
-                       command=aASCII+7;
-                       writeCommand(command);
-                       System.out.println(command + " on ");
-                   } 
-                   
-           String sql="insert into data(sw,st)"+ " values(?,?)";
-      
-       try {
-           pst=con.prepareStatement(sql);
-          //Statement stmt=con.createStatement();
-           System.out.println(c8);
-           pst.setString(1,"c8");
-           pst.setString(2,Integer.toString(c8));
-           pst.execute();
-       } catch (SQLException ex) {
-           Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       catch (Exception ex){
-           System.out.println(ex.getMessage());
-       }
-        
-    }//GEN-LAST:event_sw8MouseClicked
-
     private void sw1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sw1MouseClicked
         c1++;
        
@@ -651,7 +619,7 @@ public class Interface extends  javax.swing.JFrame  {
        sw5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/5r.png"))); // NOI18N
        sw6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/6r.png"))); // NOI18N
        sw7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/7r.png"))); // NOI18N
-       sw8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/8r.png"))); // NOI18N
+       //sw8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/8r.png"))); // NOI18N
 
             
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -659,6 +627,64 @@ public class Interface extends  javax.swing.JFrame  {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         exit(0);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        for (int i = 0; i < 7; i++) {
+             command=aASCII+i;
+            writeCommand(command);
+            System.out.println("command send for on "+ i);
+        }
+    }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void LaunchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LaunchKeyPressed
+        if(Launch.isSelected()==true){
+            try {
+                //1987
+                    soc=new Socket("192.168.4.1",6377);
+                    txtStatus.setText("Connected");
+                    connect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_connection_sync_60px.png")));
+            } 
+            catch (NoRouteToHostException el){
+                System.out.println("no root");// NOI18N
+                
+            }
+            catch (SocketException el){
+                System.out.println("power on wifi");
+                txtStatus.setText("Power on the WI-FI");
+            }
+            catch (UnknownHostException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                    txtStatus.setText("Can not connect");
+                    txtStatus.setText("Unknown Host");
+            } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                    txtStatus.setText("Can not connect");
+                    txtStatus.setText("Data Reading faliure");
+            } 
+        }
+    }//GEN-LAST:event_LaunchKeyPressed
+
+    private void LaunchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LaunchMouseClicked
+      
+        cc++;
+        if(cc%2==1){
+            //sw4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/4r.png")));
+            command=0;
+            writeCommand(command);
+            System.out.println(command + " off ");
+        }
+        else{
+          //  sw4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/switch/4b.png")));
+            command=1;
+            writeCommand(command);
+            System.out.println(command + " on ");
+        }
+        
+        
+        
+    }//GEN-LAST:event_LaunchMouseClicked
  
   private boolean isConnected() {
 		// TCheck is socket is connected to server
@@ -737,6 +763,7 @@ public class Interface extends  javax.swing.JFrame  {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Launch;
     private javax.swing.JLabel connect;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -755,7 +782,6 @@ public class Interface extends  javax.swing.JFrame  {
     private javax.swing.JLabel sw5;
     private javax.swing.JLabel sw6;
     private javax.swing.JLabel sw7;
-    private javax.swing.JLabel sw8;
     private javax.swing.JLabel txtStatus;
     // End of variables declaration//GEN-END:variables
 }
