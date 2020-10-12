@@ -68,8 +68,7 @@ public class Deinfection extends javax.swing.JFrame {
 
     public Deinfection() throws IOException {
         initComponents();
-        
-        con = DbConnect.connect();
+        getcon();
 
     }
 
@@ -88,7 +87,7 @@ public class Deinfection extends javax.swing.JFrame {
     int q5_sd = 0, q5_rt = 0, q5_status = 0;
     int q6_sd = 0, q6_rt = 0, q6_status = 0;
     int q7_sd = 0, q7_rt = 0, q7_status = 0;
-    
+
     int p1_sd = 0, p1_rt = 0, p1_status = 0;
     int p2_sd = 0, p2_rt = 0, p2_status = 0;
     int p3_sd = 0, p3_rt = 0, p3_status = 0;
@@ -104,9 +103,7 @@ public class Deinfection extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -144,21 +141,6 @@ public class Deinfection extends javax.swing.JFrame {
         jLabel4.setText("<Html>By the Faculty of Technology <br> University of Ruhuna</html>");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 700, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_standing_man_127px_1.png"))); // NOI18N
-        jLabel1.setOpaque(true);
-        jLabel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jLabel1MouseWheelMoved(evt);
-            }
-        });
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 120, 150));
-
         jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_standing_man_127px_1.png"))); // NOI18N
         jLabel3.setOpaque(true);
@@ -172,22 +154,7 @@ public class Deinfection extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 150));
-
-        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_standing_man_127px_1.png"))); // NOI18N
-        jLabel5.setOpaque(true);
-        jLabel5.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jLabel5MouseWheelMoved(evt);
-            }
-        });
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 120, 150));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 150));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -209,7 +176,7 @@ public class Deinfection extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,16 +189,16 @@ public class Deinfection extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -283,11 +250,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
 
     }//GEN-LAST:event_formWindowOpened
 
-    
-    
-    
-    
-        Runnable run21 = new Runnable() {
+    Runnable run21 = new Runnable() {
         public void run() {
             try {
                 if (p7_sd == 0) {
@@ -419,9 +382,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
             }
         }
     };
-    
-    
-    
+
     Runnable run14 = new Runnable() {
         public void run() {
             try {
@@ -700,6 +661,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         try {
             soc = new Socket("192.168.4.1", 1987);
             this.temp = 1;
+            System.out.println("connected");
         } catch (NoRouteToHostException el) {
             System.out.println("no root");// NOI18N
 
@@ -752,13 +714,15 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         this.p7_rt = Integer.valueOf(prop.getProperty("p7_rt"));
         reader.close();
     }
-    
-    
-    
+
     public void getDataR() throws IOException {
+        System.out.println("here");
         FileReader reader = new FileReader("src\\config\\configure.properties");
+        System.out.println("here1");
         Properties prop = new Properties();
+        System.out.println("here2");
         prop.load(reader);
+        System.out.println("here3");
 
         this.r1_status = Integer.valueOf(prop.getProperty("r1_status"));
         this.r1_sd = Integer.valueOf(prop.getProperty("r1_sd"));
@@ -787,11 +751,13 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         this.r7_status = Integer.valueOf(prop.getProperty("r7_status"));
         this.r7_sd = Integer.valueOf(prop.getProperty("r7_sd"));
         this.r7_rt = Integer.valueOf(prop.getProperty("r7_rt"));
+        System.out.println("data loade");
         reader.close();
     }
-    public void getDataQ() throws IOException{
+
+    public void getDataQ() throws IOException {
         //second program
-        
+
         FileReader reader = new FileReader("src\\config\\configure.properties");
         Properties prop = new Properties();
         prop.load(reader);
@@ -837,7 +803,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
 
     int[] priority_array = new int[7];
 
-    public void priority1() {
+    public int priority1() {
         int[] sd = {this.r1_sd, this.r2_sd, this.r3_sd, this.r4_sd, this.r5_sd, this.r6_sd, this.r7_sd};
         int[] sd_sort = sd;
         Arrays.sort(sd_sort);
@@ -889,6 +855,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
             }
 
         }
+        return 1;
     }
     // for 2nd program
 
@@ -953,11 +920,8 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         }//JOptionPane.showMessageDialog(null, "Completed");
     }
 
-
     // schedule 03
-    
-    
-      public void priority3() {
+    public void priority3() {
         int[] p2_sd_arr = {this.p1_sd, this.p2_sd, this.p3_sd, this.p4_sd, this.p5_sd, this.p6_sd, this.p7_sd};
         int[] p2_sd_sort = p2_sd_arr;
         Arrays.sort(p2_sd_sort);
@@ -1017,21 +981,7 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         }*/
         }//JOptionPane.showMessageDialog(null, "Completed");
     }
-    
-    
-    
-    
-    
-    
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        try {
-            getDataQ();
-        } catch (IOException ex) {
-            Logger.getLogger(Deinfection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        priority2();
 
-    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         for (int i = 0; i < 8; i++) {
@@ -1041,12 +991,8 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
-    private void jLabel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel1MouseWheelMoved
-
-    }//GEN-LAST:event_jLabel1MouseWheelMoved
-
     private void jLabel3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel3MouseWheelMoved
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jLabel3MouseWheelMoved
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
@@ -1055,7 +1001,9 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
         } catch (IOException ex) {
             Logger.getLogger(Deinfection.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         priority1();
+
 
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -1082,21 +1030,8 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
-      
+
     }//GEN-LAST:event_formMouseWheelMoved
-
-    private void jLabel5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jLabel5MouseWheelMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5MouseWheelMoved
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        try {
-            getDataP();
-        } catch (IOException ex) {
-            Logger.getLogger(Deinfection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        priority3();
-    }//GEN-LAST:event_jLabel5MouseClicked
 
     private boolean isConnected() {
         // TCheck is socket is connected to server
@@ -1180,11 +1115,9 @@ String reg_valve = null, reg_move = null, reg_first_delay = null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

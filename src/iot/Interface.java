@@ -46,9 +46,7 @@ public class Interface extends  javax.swing.JFrame  {
    Connection con=null;
    PreparedStatement pst=null;
     public Interface() {
-        initComponents();
-        con=DbConnect.connect();
-        
+        initComponents();    
     }
    
 

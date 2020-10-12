@@ -427,19 +427,19 @@ public class Editor extends javax.swing.JFrame {
             }
 
             if (this.r6_status.equals("1")) {
-                jToggleButton7.setSelected(true);
-                jToggleButton7.setBackground(new java.awt.Color(0, 102, 204));
-            } else {
-                jToggleButton7.setSelected(false);
-                jToggleButton7.setBackground(new java.awt.Color(255, 51, 102));
-            }
-
-            if (this.r7_status.equals("1")) {
                 jToggleButton6.setSelected(true);
                 jToggleButton6.setBackground(new java.awt.Color(0, 102, 204));
             } else {
                 jToggleButton6.setSelected(false);
                 jToggleButton6.setBackground(new java.awt.Color(255, 51, 102));
+            }
+
+            if (this.r7_status.equals("1")) {
+                jToggleButton7.setSelected(true);
+                jToggleButton7.setBackground(new java.awt.Color(0, 102, 204));
+            } else {
+                jToggleButton7.setSelected(false);
+                jToggleButton7.setBackground(new java.awt.Color(255, 51, 102));
             }
 
             int x = 0;
